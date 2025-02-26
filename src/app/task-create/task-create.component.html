@@ -1,0 +1,74 @@
+<h5>Create task</h5>
+<form (ngSubmit)="onSubmit()" [formGroup]="taskForm">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input
+      type="text"
+      class="form-control"
+      name="title"
+      id="title"
+      aria-describedby="helpId"
+      formControlName="title"
+      placeholder=""
+      required
+    />
+    <small
+      *ngIf="
+        title?.invalid &&
+        (title?.dirty || title?.touched) &&
+        title?.hasError('required')
+      "
+      id="helpId"
+      class="form-text text-muted"
+      >Required</small
+    >
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <input
+      type="text"
+      class="form-control"
+      name=""
+      id="description"
+      aria-describedby="helpId"
+      placeholder=""
+      formControlName="description"
+    />
+  </div>
+  <div class="form-group">
+    <label for="priority">Priority</label>
+    <select
+      class="form-control"
+      name=""
+      id="priority"
+      formControlName="priority"
+    >
+      <option value="high">High</option>
+      <option value="medium">Medium</option>
+      <option value="low">Low</option>
+    </select>
+  </div>
+  <div class="form-check">
+    <label class="form-check-label">
+      <input
+        type="checkbox"
+        class="form-check-input"
+        name=""
+        id=""
+        value="checkedValue"
+        checked
+        formControlName="status"
+      />
+      Status
+    </label>
+  </div>
+  <button
+    type="submit"
+    name=""
+    id=""
+    class="btn btn-primary"
+    [disabled]="!taskForm.valid"
+  >
+    Submit
+  </button>
+</form>

@@ -1,0 +1,72 @@
+<h5>Task list</h5>
+<form class="form-inline my-2 my-lg-0">
+  <input
+    class="form-control mr-sm-2"
+    type="text"
+    placeholder="Search"
+    name="search"
+    [(ngModel)]="search"
+  />
+  <button
+    class="btn btn-outline-success my-2 my-sm-0"
+    type="button"
+    (click)="onSearch()"
+  >
+    Search
+  </button>
+</form>
+<button
+  type="button"
+  name=""
+  id=""
+  class="btn btn-primary"
+  routerLink="/tasks/add"
+>
+  Create
+</button>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Priority</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (task of tasks; track task.id) {
+    <tr>
+      <td scope="row">{{ task.id }}</td>
+      <td>{{ task.title }}</td>
+      <td>{{ task.description }}</td>
+      <td>{{ task.priority }}</td>
+      <td>{{ task.status }}</td>
+      <td>
+        <a
+          class="btn btn-primary"
+          role="button"
+          [routerLink]="[task.id, 'detail']"
+          routerLinkActive="active"
+          >Detail</a
+        >
+        <a
+          class="btn btn-primary"
+          role="button"
+          [routerLink]="[task.id, 'edit']"
+          routerLinkActive="active"
+          >Edit</a
+        >
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="onDelete(task.id)"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
